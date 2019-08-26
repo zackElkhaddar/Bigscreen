@@ -14,8 +14,15 @@ class CreateQuestionsTable extends Migration
     public function up()
     {
         Schema::create('questions', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->increments('id');
+            $table->string('corps', 255);
+            $table->enum('type', array('A', 'B', 'C'));
+            $table->string('choix');
+            $table->unsignedInteger('sondage_id');
+        });
+
+        Schema::table('questions', function(Blueprint $table) {
+            $table->foreign('sondage_id')->references('id')->on('sondages')->onDelete('cascade');
         });
     }
 
@@ -26,6 +33,10 @@ class CreateQuestionsTable extends Migration
      */
     public function down()
     {
+        Schema::table('questions', function(Blueprint $table) {
+            $table->dropForeign(['sondage_id']);
+        });
+
         Schema::dropIfExists('questions');
     }
 }

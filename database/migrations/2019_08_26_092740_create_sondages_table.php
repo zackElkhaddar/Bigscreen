@@ -14,8 +14,8 @@ class CreateSondagesTable extends Migration
     public function up()
     {
         Schema::create('sondages', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->increments('id');
+            $table->string('nom');
         });
     }
 
