@@ -11,6 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/','QuestionController@create')->name('front.create');
+Route::POST('/','ReponseController@store')->name('front.store');
+Route::get('/validation',function(){
+	return view('front.validation');
 });
+
+Route::get('/{id}','QuestionController@edite')->where('id','[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}')->name('front.edite');
+
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
