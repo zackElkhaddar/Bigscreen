@@ -2,19 +2,17 @@
 
 @section('content')
 <h1 class="sous_titre">
-Vous trouvez ci-dessous les réponses que vous avez apportées à notre sondage du
-01-01_2019 à 00:00:00
+Vous trouvez ci-dessous les réponses que vous avez apportées à notre sondage le
+{!! $date_sondage->format('Y-m-d') !!} à {!!  $heure_sondage->format('H:i:s') !!} 
+ 
 </h1>
 
 @forelse($questions as $question)
 
+<div class="col-lg-12">
 
-
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="container_haut">
-
-	<strong> Question (s) {{$question->id}}/{{$questions->count()}}</strong><br>
+	<strong> Question {{$question->id}}/{{$questions->count()}}</strong><br>
 	<label class="sous_titre_formulaire">{{$question->corps}}</label>
-
 
 @forelse($reponses as $key => $value)
 @if($question->id == $key)

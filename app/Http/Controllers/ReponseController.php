@@ -4,24 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
+use Validator;
 use App\Question;
 use App\Reponse;
+use DB;
 class ReponseController extends Controller
 {
     public function store(Request $request){
+
+        $question = Question::all();
+
 
     $user_id = Str::uuid()->toString();
 
     $this->validate($request,[
     'reponseB.*' => 'required|min:1|max:255',
     'reponseA.*' => 'required',
-    'reponseC.*' => 'required'
+    'reponseC.*' => 'required',
+    'email.*' => 'required|email:filter'
     ]);
 
     $reponses = array_replace(
     			$request->reponseB,
     			$request->reponseA,
-    			$request->reponseC
+    			$request->reponseC,
+                $request->email
     );
 
     ksort($reponses);
@@ -44,7 +52,7 @@ class ReponseController extends Controller
      votre investissement, nous vous préparons une application toujours plus 
      facile à utiliser, seul ou en famille.<br> Si vous désirez consulter vos réponse 
      ultérieurement, vous pouvez consultez cette adresse:
-     <a href='".url("/$user_id")."'/>" .url("/$user_id"). "  </a>"
+     <a href='". URL("/$user_id") ."'/>" . URL("/$user_id") . "  </a>"
 
      );
     

@@ -18,6 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->string('corps', 255);
             $table->enum('type', array('A', 'B', 'C'));
             $table->string('choix')->nullable();
+            $table->string('is_email')->nullable()->default(false);
             $table->unsignedInteger('sondage_id');
         });
 

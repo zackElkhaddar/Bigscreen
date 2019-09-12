@@ -14,6 +14,7 @@ class Reponse extends Model
      
 	protected $fillable = ['reponse','user_id','question_id'];
     //une réponse appartient à une question
+    
     public function question(){
     	return $this->belongsTo('App\Question');
     }
