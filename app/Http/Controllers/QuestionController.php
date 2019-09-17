@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Question;
 use App\Reponse;
-use Carbon\Carbon;
 use DB;
-
-
+/*use Carbon\Carbon;*/
 
 class QuestionController extends Controller
 {
-    //
-
+    
     public function create(){
     	$questions = Question::all();
 
@@ -28,15 +25,12 @@ class QuestionController extends Controller
 
     $date_response_sondage = Reponse::orderBy('created_at','DESC')->get();
     $date_sondage = $date_response_sondage[0]->created_at;
-    $heure_sondage =$date_response_sondage[0]->created_at->addHours(2);
+    $heure_sondage =$date_response_sondage[0]->created_at;
    
             
     	$reponses = Reponse::UserLink($userLink)->pluck('reponse','question_id');
 
     	return view('front.reponseQuestionnaire',compact('reponses','questions','date_sondage','heure_sondage'));
-    }
-
-
-   
+    }  
 
 }

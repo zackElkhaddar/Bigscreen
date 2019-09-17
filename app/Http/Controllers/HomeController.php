@@ -31,26 +31,46 @@ class HomeController extends Controller
     public function administration()
     {
         //Requêtes Question 6
-        $OcculusRift=DB::table('reponses')->where('reponse','Occulus Rifts/s')->count();
-        $HTCVive=DB::table('reponses')->where('reponse','HTC Vive')->count();
-        $WindowsMixedReality=DB::table('reponses')->where('reponse','Windows Mixed Reality')->count();
-        $PSVR=DB::table('reponses')->where('reponse','PSVR')->count();
+        $OcculusRift = DB::table('reponses')
+                    ->where('reponse','Occulus Rifts/s')
+                    ->count();
+        $HTCVive     = DB::table('reponses')
+                    ->where('reponse','HTC Vive')
+                    ->count();
+        $WindowsMixedReality = DB::table('reponses')
+                    ->where('reponse','Windows Mixed Reality')
+                    ->count();
+        $PSVR        = DB::table('reponses')
+                    ->where('reponse','PSVR')
+                    ->count();
      
         $equipement_q6 = Charts::create('pie', 'highcharts')
                     ->title('Graphe question 6')
-                    ->labels(['Occulus Rifts/s', 'HTC Vive',' PSVR','Windows Mixed Reality'])
+                    ->labels(['Occulus Rifts/s', 'HTC Vive','Windows Mixed Reality',' PSVR'])
                     ->values([$OcculusRift, $HTCVive, $WindowsMixedReality, $PSVR])
                     ->dimensions(490,400)
                     ->responsive(false);
        
 
         //Requêtes Question 7
-        $SteamVR=DB::table('reponses')->where('reponse','SteamVR')->count();
-        $OcculusStore=DB::table('reponses')->where('reponse','Occulus store')->count();
-        $Viveport=DB::table('reponses')->where('reponse','Viveport')->count();
-        $PlaystationVR=DB::table('reponses')->where('reponse','Playstation VR')->count();
-        $GooglePlay=DB::table('reponses')->where('reponse','Google Play')->count();
-        $WindowsStore=DB::table('reponses')->where('reponse','Windows store')->count();
+        $SteamVR    = DB::table('reponses')
+                    ->where('reponse','SteamVR')
+                    ->count();
+        $OcculusStore = DB::table('reponses')
+                    ->where('reponse','Occulus store')
+                    ->count();
+        $Viveport   = DB::table('reponses')
+                    ->where('reponse','Viveport')
+                    ->count();
+        $PlaystationVR = DB::table('reponses')
+                    ->where('reponse','Playstation VR')
+                    ->count();
+        $GooglePlay = DB::table('reponses')
+                    ->where('reponse','Google Play')
+                    ->count();
+        $WindowsStore = DB::table('reponses')
+                    ->where('reponse','Windows store')
+                    ->count();
         
         $equipement_q7 = Charts::create('pie', 'highcharts')
                     ->title('Graphe question 7')
@@ -61,10 +81,18 @@ class HomeController extends Controller
            
 
         //Requêtes Question 10
-        $regarderEmissionsTV=DB::table('reponses')->where('reponse','regarder des émissions TV en direct')->count();
-        $regarderFilms=DB::table('reponses')->where('reponse','regarder des films')->count();
-        $jouerEnSolo=DB::table('reponses')->where('reponse','jouer en solo')->count();
-        $jouerEnTeam=DB::table('reponses')->where('reponse','jouer en team')->count();
+        $regarderEmissionsTV = DB::table('reponses')
+                    ->where('reponse','regarder des émissions TV en direct')
+                    ->count();
+        $regarderFilms = DB::table('reponses')
+                    ->where('reponse','regarder des films')
+                    ->count();
+        $jouerEnSolo = DB::table('reponses')
+                    ->where('reponse','jouer en solo')
+                    ->count();
+        $jouerEnTeam = DB::table('reponses')
+                    ->where('reponse','jouer en team')
+                    ->count();
 
         $equipement_q10 = Charts::create('pie', 'highcharts')
                 ->title('Graphe question 10')
@@ -76,29 +104,34 @@ class HomeController extends Controller
 
 // requete pour le radar chart
 
-
+        
         $question11 = DB::table('reponses')
-        ->join('questions', 'reponses.question_id', '=', 'questions.id')
-        ->select('reponses.*')->where('reponses.question_id','11')->avg('reponse');
+                        ->select('*')
+                        ->where('reponses.question_id','11')
+                        ->avg('reponse');
 
         $question12 = DB::table('reponses')
-        ->join('questions', 'reponses.question_id', '=', 'questions.id')
-        ->select('reponses.*')->where('reponses.question_id','12')->avg('reponse');
+                        ->select('*')
+                        ->where('reponses.question_id','12')
+                        ->avg('reponse');
                     
 
         $question13 = DB::table('reponses')
-        ->join('questions', 'reponses.question_id', '=', 'questions.id')
-        ->select('reponses.*')->where('reponses.question_id','13')->avg('reponse');
-                    
+                        ->select('*')
+                        ->where('reponses.question_id','13')
+                        ->avg('reponse');
+                                    
 
         $question14 = DB::table('reponses')
-        ->join('questions', 'reponses.question_id', '=', 'questions.id')
-        ->select('reponses.*')->where('reponses.question_id','14')->avg('reponse');
+                        ->select('*')
+                        ->where('reponses.question_id','14')
+                        ->avg('reponse');
                     
 
         $question15 = DB::table('reponses')
-        ->join('questions', 'reponses.question_id', '=', 'questions.id')
-        ->select('reponses.*')->where('reponses.question_id','15')->avg('reponse');
+                        ->select('*')
+                        ->where('reponses.question_id','15')
+                        ->avg('reponse');
    
       
 
